@@ -1,0 +1,69 @@
+{
+  "name": "@setsunajs/observable",
+  "version": "0.1.2",
+  "description": "An implementation that conforms to the 'setsuna/observable' specification",
+  "keywords": [
+    "setsuna",
+    "@setsunajs/observable"
+  ],
+  "homepage": "https://github.com/setsunajs/observable#readme",
+  "bugs": {
+    "url": "https://github.com/setsunajs/observable/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/setsunajs/observable.git"
+  },
+  "license": "MIT",
+  "author": "@顾弦笙/usagisah <1286791152@qq.com>",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./dist/observable.js",
+      "types": "./dist/observable.d.ts"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "main": "index.js",
+  "jsdelivr": "dist/observable.global.js",
+  "unpkg": "dist/observable.global.js",
+  "module": "dist/observable.js",
+  "types": "dist/observable.d.ts",
+  "files": [
+    "index.js",
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "coverage": "vitest run --coverage",
+    "format": "prettier -w src/**/*.ts",
+    "release": "node ./scripts/release.js",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.33.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@types/inquirer": "^9.0.2",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.11.8",
+    "@types/semver": "^7.3.13",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitest/coverage-c8": "^0.24.4",
+    "chalk": "^5.1.2",
+    "esbuild": "^0.15.12",
+    "execa": "^6.1.0",
+    "inquirer": "^9.1.4",
+    "jsdom": "^20.0.2",
+    "minimist": "^1.2.7",
+    "prettier": "^2.7.1",
+    "prettier-config-usagisah": "^1.0.1",
+    "semver": "^7.3.8",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.2",
+    "vitest": "^0.24.4"
+  },
+  "dependencies": {
+    "@setsunajs/shared": "^0.1.2"
+  }
+}
