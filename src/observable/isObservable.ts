@@ -5,9 +5,8 @@ export function isObservable<O = Observable<any, any, any>>(
   value: unknown
 ): value is O {
   return (
-    value instanceof Observable ||
-    (isPlainObject(value) &&
-      isFunction(value.pipe) &&
-      isFunction(value.subscribe))
+    isPlainObject(value) &&
+    isFunction(value.pipe) &&
+    isFunction(value.subscribe)
   )
 }

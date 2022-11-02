@@ -1,10 +1,9 @@
 import { isObservable } from "./isObservable"
-import { Observable } from "./Observable"
 import { pipe, next, error, complete, subscribe } from "./prototype"
-import { ObservableContext } from "./types"
+import { ObservableContext, ObservableParam, Observable } from "./types"
 
 export function createObservable<E = any, V = E, O = V>(
-  value?: Observable<any, E, any> | E
+  value?: ObservableParam<E>
 ) {
   const shouldSubscribe = isObservable(value)
   if (value && shouldSubscribe) {
@@ -18,15 +17,16 @@ export function createObservable<E = any, V = E, O = V>(
     _subs: [],
     _pipes: [],
     closed: false,
-    observable: {
-      value: shouldSubscribe ? value.value : value
-    }
+    observable: {}
   }
-  context.observable.pipe = pipe.bind(context)
-  context.observable.next = next.bind(context)
-  context.observable.error = error.bind(context)
-  context.observable.complete = complete.bind(context)
-  context.observable.subscribe = subscribe.bind(context)
+  Object.assign(context.observable, {
+    value: shouldSubscribe ? value.value : value,
+    pipe: pipe.bind(context),
+    next: next.bind(context),
+    error: error.bind(context),
+    complete: complete.bind(context),
+    subscribe: subscribe.bind(context)
+  })
 
   if (shouldSubscribe) {
     value.subscribe({

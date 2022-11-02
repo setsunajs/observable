@@ -1,8 +1,8 @@
-import { Observable } from "./Observable"
-
 export type PickObservable<T> =
   | (T extends Observable<infer R> ? R : T)
   | undefined
+
+export type ObservableParam<T> = Observable<any, T, any> | T
 
 export type PipeOperatorNext<T, R> = (value: T) => R
 export type PipeOperatorOption<T, R> = {
@@ -43,4 +43,14 @@ export type ObservableContext = {
   _subs: SubOperatorOption<any, any>[]
   closed: boolean
   observable: Partial<Observable<any, any, any>>
+}
+
+export type Observable<E = any, V = E, O = V> = {
+  value: PickObservable<V>
+  closed: boolean
+  pipe: Pipe<E, V, O>
+  next: ObservableNext<E>
+  error: ObservableError
+  complete: ObservableComplete
+  subscribe: ObservableSubscribe<V, O>
 }

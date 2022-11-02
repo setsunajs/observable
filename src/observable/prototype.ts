@@ -196,7 +196,7 @@ async function callEffectEmit(
       curValue
     )
   }
-  
+
   return Promise.resolve(
     curType === "next" ? (ctx.observable.value = curValue) : void 0
   )
