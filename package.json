@@ -35,11 +35,11 @@
     "src"
   ],
   "scripts": {
+    "dev": "vitest -w",
     "build": "node ./scripts/build.js",
     "coverage": "vitest run --coverage",
     "format": "prettier -w src/**/*.ts",
-    "release": "node ./scripts/release.js",
-    "test": "vitest"
+    "release": "node ./scripts/release.js"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.33.5",

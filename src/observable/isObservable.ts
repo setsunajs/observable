@@ -1,7 +1,9 @@
 import { isFunction, isPlainObject } from "@setsunajs/shared"
 import { Observable } from "."
 
-export function isObservable<O = Observable<any, any, any>>(value: unknown): value is O {
+export function isObservable<O = Observable<any, any, any>>(
+  value: unknown
+): value is O {
   return (
     value instanceof Observable ||
     (isPlainObject(value) &&

@@ -1,11 +1,10 @@
-import { OB_CLOSED_SET } from "./constants"
 import { isObservable } from "./isObservable"
 import { Observable } from "./Observable"
 import { pipe, next, error, complete, subscribe } from "./prototype"
 import { ObservableContext } from "./types"
 
-export function createObservable<T = any, O = T>(
-  value?: Observable<T, any, any> | T
+export function createObservable<E = any, V = E, O = V>(
+  value?: Observable<any, E, any> | E
 ) {
   const shouldSubscribe = isObservable(value)
   if (value && shouldSubscribe) {
@@ -16,33 +15,26 @@ export function createObservable<T = any, O = T>(
   }
 
   const context: ObservableContext = {
-    _closed: false,
     _subs: [],
     _pipes: [],
-    value: shouldSubscribe ? value.value : value
+    closed: false,
+    observable: {
+      value: shouldSubscribe ? value.value : value
+    }
   }
-  context.pipe = pipe.bind(context)
-  context.error = error.bind(context)
-  context.next = next.bind(context)
-  context.complete = complete.bind(context)
-  context.subscribe = subscribe.bind(context)
-  Object.defineProperty(context, "closed", {
-    get: () => context._closed,
-    set: value =>
-      value === OB_CLOSED_SET
-        ? (context._closed = value)
-        : console.error("[Observable error] Observable.closed cannot set"),
-    configurable: false,
-    enumerable: true
-  })
+  context.observable.pipe = pipe.bind(context)
+  context.observable.next = next.bind(context)
+  context.observable.error = error.bind(context)
+  context.observable.complete = complete.bind(context)
+  context.observable.subscribe = subscribe.bind(context)
 
   if (shouldSubscribe) {
     value.subscribe({
-      next: context.next,
-      error: context.error,
-      complete: context.complete
+      next: context.observable.next,
+      error: context.observable.error,
+      complete: context.observable.complete
     })
   }
 
-  return context as Observable<T, O>
+  return context.observable as Observable<E, V, O>
 }
