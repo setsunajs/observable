@@ -1,6 +1,9 @@
+import { isUndef } from "@setsunajs/shared"
 import { isObservable } from "./isObservable"
 import { pipe, next, error, complete, subscribe } from "./prototype"
 import { ObservableContext, ObservableParam, Observable } from "./types"
+
+export const OB_INIT_VALUE = Symbol("uninitialized observable value")
 
 export function createObservable<E = any, V = E, O = V>(
   value?: ObservableParam<E>
@@ -20,7 +23,7 @@ export function createObservable<E = any, V = E, O = V>(
     observable: {}
   }
   Object.assign(context.observable, {
-    value: shouldSubscribe ? value.value : value,
+    value: shouldSubscribe ? value.value : isUndef(value) ? OB_INIT_VALUE : value,
     pipe: pipe.bind(context),
     next: next.bind(context),
     error: error.bind(context),
