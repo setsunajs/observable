@@ -1,6 +1,6 @@
 {
   "name": "@setsunajs/observable",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "An implementation that conforms to the 'setsuna/observable' specification",
   "keywords": [
     "setsuna",
@@ -16,30 +16,37 @@
   },
   "license": "MIT",
   "author": "@顾弦笙/usagisah <1286791152@qq.com>",
+  "type": "module",
   "exports": {
     ".": {
-      "require": "./index.js",
-      "import": "./dist/observable.js",
-      "types": "./dist/observable.d.ts"
+      "require": "./dist/cjs/main.cjs",
+      "import": "./dist/esm/main.js",
+      "types": "./dist/dts/main.d.ts"
+    },
+    "./observable": {
+      "require": "./dist/cjs/observable.cjs",
+      "import": "./dist/esm/observable.js",
+      "types": "./dist/dts/observable.d.ts"
     },
     "./dist/*": "./dist/*"
   },
   "main": "index.js",
-  "jsdelivr": "dist/observable.global.js",
-  "unpkg": "dist/observable.global.js",
-  "module": "dist/observable.js",
-  "types": "dist/observable.d.ts",
+  "module": "dist/esm/main.js",
+  "types": "dist/dts/main.d.ts",
   "files": [
-    "index.js",
     "dist",
     "src"
   ],
   "scripts": {
-    "dev": "vitest -w",
     "build": "node ./scripts/build.js",
     "coverage": "vitest run --coverage",
+    "dev": "vitest -w",
     "format": "prettier -w src/**/*.ts",
-    "release": "node ./scripts/release.js"
+    "release": "node ./scripts/release.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@setsunajs/shared": "^0.1.2"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.33.5",
@@ -62,8 +69,5 @@
     "typescript": "^4.8.4",
     "vite": "^3.2.2",
     "vitest": "^0.24.4"
-  },
-  "dependencies": {
-    "@setsunajs/shared": "^0.1.2"
   }
 }

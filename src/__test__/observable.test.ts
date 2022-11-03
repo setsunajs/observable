@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom"
-import { createObservable, OB_FLAG } from "src/observable"
+import { createObservable, OB_FLAG, OB_INIT_VALUE } from "src/observable"
 
 describe("createObservable", () => {
   it("only-next pipe & subscribe", async () => {
@@ -7,11 +7,11 @@ describe("createObservable", () => {
       const ary: number[] = []
 
       const o1 = createObservable().pipe(v => 1)
-      expect(o1.value).toBeUndefined()
+      expect(o1.value).toBe(OB_INIT_VALUE)
       o1.subscribe((v, o) => {
         ary.push(1)
         expect(v).toBe(1)
-        expect(o).toBeUndefined()
+        expect(o).toBe(OB_INIT_VALUE)
       })
       o1.next(1)
 
@@ -43,7 +43,7 @@ describe("createObservable", () => {
         next: (v, o) => {
           ary.push(1)
           expect(v).toBe(1)
-          expect(o).toBeUndefined()
+          expect(o).toBe(OB_INIT_VALUE)
         }
       })
       o1.next(1)
