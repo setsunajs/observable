@@ -48,7 +48,6 @@ export const pipe: Pipe<any, any, any> = function (
     })
   }
 
-  ctx.observable.pipe = void 0
   return ctx.observable as any
 }
 
