@@ -167,12 +167,15 @@ async function callEffectEmit(
     }
   }
 
+  const oldValue = ctx.observable.value
   let hasError = curType === "error"
+  if (curType === "next") ctx.observable.value = curValue
+
   for (let i = 0; i < _subs.length; i++) {
     try {
       const sub = _subs[i]
       if (curType === "next") {
-        sub.next && sub.next(curValue, ctx.observable.value)
+        sub.next && sub.next(curValue, oldValue)
       } else if (curType === "error") {
         if (sub.error) {
           sub.error(curValue)
@@ -189,14 +192,11 @@ async function callEffectEmit(
     }
   }
 
-  if (hasError) {
+  if (hasError)
     console.error(
       "[Observable error]: subscribe has unhandled exception",
       curValue
     )
-  }
 
-  return Promise.resolve(
-    curType === "next" ? (ctx.observable.value = curValue) : void 0
-  )
+  return Promise.resolve(ctx.observable.value)
 }
