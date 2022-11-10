@@ -43,6 +43,7 @@ export type ObservableContext = {
   _subs: SubOperatorOption<any, any>[]
   closed: boolean
   observable: Partial<Observable<any, any, any>>
+  unSubscribe?: UnObservableSubscribe
 }
 
 export type Observable<E = any, V = E, O = V> = {

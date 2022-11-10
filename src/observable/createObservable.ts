@@ -20,9 +20,12 @@ export function createObservable<E = any, V = E, O = V>(
     complete: complete.bind(context),
     subscribe: subscribe.bind(context)
   })
+  Object.defineProperty(context.observable, "closed", {
+    get: () => context.closed
+  })
 
   if (shouldSubscribe) {
-    value.subscribe({
+    context.unSubscribe = value.subscribe({
       next: context.observable.next,
       error: context.observable.error,
       complete: context.observable.complete
