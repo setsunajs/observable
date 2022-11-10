@@ -1,4 +1,3 @@
-import { isUndef } from "@setsunajs/shared"
 import { isObservable } from "./isObservable"
 import { pipe, next, error, complete, subscribe } from "./prototype"
 import { ObservableContext, ObservableParam, Observable } from "./types"
@@ -7,13 +6,6 @@ export function createObservable<E = any, V = E, O = V>(
   value?: ObservableParam<E>
 ) {
   const shouldSubscribe = isObservable(value)
-  if (value && shouldSubscribe) {
-    throw console.error(
-      "[Observable error] value is not Observable like ",
-      value
-    )
-  }
-
   const context: ObservableContext = {
     _subs: [],
     _pipes: [],

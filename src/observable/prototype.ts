@@ -192,11 +192,13 @@ async function callEffectEmit(
     }
   }
 
-  if (hasError)
+  if (hasError) {
     console.error(
       "[Observable error]: subscribe has unhandled exception",
       curValue
     )
+    return Promise.resolve()
+  }
 
   return Promise.resolve(ctx.observable.value)
 }

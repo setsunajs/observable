@@ -93,12 +93,11 @@ describe("createObservable", () => {
   })
 
   it("emit next/error/complete resolve Promise", () => {
+    vi.spyOn(console, "error").mockImplementation(() => null)
     const ob = createObservable(1).pipe(v => ++v)
-    ob.subscribe({ error: () => null })
-
     expect(ob.next(10)).resolves.toBe(11)
     expect(ob.error(10)).resolves.toBeUndefined()
-    expect(ob.complete()).resolves.toBeUndefined()
+    expect(ob.complete()).resolves.toBe(11)
   })
 
   it("complete", async () => {
