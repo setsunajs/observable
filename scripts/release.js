@@ -1,12 +1,9 @@
 import semver from "semver"
-import minimist from "minimist"
 import { print, success, error, resolvePackage, resolve } from "./helper.js"
 import inquirer from "inquirer"
 import chalk from "chalk"
 import { execa } from "execa"
 import { writeFile } from "fs/promises"
-
-const { tag } = minimist(process.argv.slice(2))
 
 async function release() {
   console.clear()
@@ -19,10 +16,7 @@ async function release() {
 
   const packages = await resolvePackage()
   const { version } = packages
-  const preId = semver.prerelease(version)
-  const versionIncType = ["patch", "minor", "major"].concat(
-    preId ? ["prepatch", "preminor", "premajor", "prerelease"] : []
-  )
+  const versionIncType = ["patch", "minor", "major"]
 
   const { release } = await inquirer.prompt([
     {
@@ -32,10 +26,7 @@ async function release() {
         `Select the version to publish version (current version (${version}))`
       ),
       choices: versionIncType
-        .map(
-          type =>
-            `${type}--(${semver.inc(version, type, preId && preId.join("."))})`
-        )
+        .map(type => `${type}--(${semver.inc(version, type)})`)
         .concat("custom")
     }
   ])
@@ -76,12 +67,7 @@ async function release() {
   success("write success")
 
   print("publishing...")
-  // await execa("npm", [
-  //   "publish",
-  //   "--access",
-  //   "public",
-  //   ...[preId ? ["--tag", preId[0]] : []]
-  // ])
+  await execa("npm", ["publish", "--access", "public"])
   success("publish success")
 
   print("git commit...")

@@ -10,7 +10,7 @@
   },
   "dtsRollup": {
     "enabled": true,
-    "untrimmedFilePath": "./dist/dts/observable.d.ts"
+    "untrimmedFilePath": "./observable/observable.d.ts"
   },
   "tsdocMetadata": {
     "enabled": false

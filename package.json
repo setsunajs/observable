@@ -1,6 +1,6 @@
 {
   "name": "@setsunajs/observable",
-  "version": "0.1.5",
+  "version": "0.1.2",
   "description": "An implementation that conforms to the 'setsuna/observable' specification",
   "keywords": [
     "setsuna",
@@ -19,23 +19,24 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./dist/cjs/main.cjs",
-      "import": "./dist/esm/main.js",
-      "types": "./dist/dts/main.d.ts"
+      "require": "./dist/main.cjs",
+      "import": "./dist/main.js",
+      "types": "./dist/main.d.ts"
     },
     "./observable": {
-      "require": "./dist/cjs/observable.cjs",
-      "import": "./dist/esm/observable.js",
-      "types": "./dist/dts/observable.d.ts"
-    },
-    "./dist/*": "./dist/*"
+      "require": "./observable/observable.cjs",
+      "import": "./observable/observable.js",
+      "types": "./observable/observable.d.ts"
+    }
   },
   "main": "index.js",
-  "module": "dist/esm/main.js",
-  "types": "dist/dts/main.d.ts",
+  "module": "dist/main.js",
+  "types": "dist/main.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "observable",
+    "index.js"
   ],
   "scripts": {
     "build": "node ./scripts/build.js",

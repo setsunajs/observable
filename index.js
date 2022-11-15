@@ -1,3 +1,7 @@
 "use strict"
 
-module.exports = require("./dist/main.cjs")
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./dist/cjs/main.prod.cjs")
+} else {
+  module.exports = require("./dist/cjs/main.cjs")
+}
