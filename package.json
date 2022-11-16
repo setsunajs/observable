@@ -1,6 +1,6 @@
 {
   "name": "@setsunajs/observable",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An implementation that conforms to the 'setsuna/observable' specification",
   "keywords": [
     "setsuna",
@@ -47,7 +47,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@setsunajs/shared": "^0.1.2"
+    "@setsunajs/shared": "^0.2.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.33.5",

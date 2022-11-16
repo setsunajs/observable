@@ -8,11 +8,11 @@ import { writeFile } from "fs/promises"
 async function release() {
   console.clear()
 
-  print("check npm logged...")
-  await execa("npm", ["whoami"]).catch(() => {
-    throw "please login npm."
-  })
-  success("npm logged in")
+  // print("check npm logged...")
+  // await execa("npm", ["whoami"]).catch(() => {
+  //   throw "please login npm."
+  // })
+  // success("npm logged in")
 
   const packages = await resolvePackage()
   const { version } = packages
