@@ -71,8 +71,8 @@ async function release() {
   success("publish success")
 
   print("git commit...")
-  // await execa("git", "add", ".")
-  // await execa("git", "commit", "-m", `release version ${useVersion}`)
+  await execa("git", "add", ".")
+  await execa("git", "commit", "-m", `"release version ${useVersion}"`)
   success("git commit success")
 }
 
