@@ -20,6 +20,82 @@ export interface Pipe<E, V, O> {
     fn1: ObservablePipeOperator<E, A>,
     fn2: ObservablePipeOperator<A, V>
   ): PipeOperatorObservable<E, V, O>
+
+  <A, B>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, V>
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, V>,
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, V>
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D, F>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, F>,
+    fn6: ObservablePipeOperator<F, V>
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D, F, G>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, F>,
+    fn6: ObservablePipeOperator<F, G>,
+    fn7: ObservablePipeOperator<G, V>,
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D, F, G, H>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, F>,
+    fn6: ObservablePipeOperator<F, G>,
+    fn7: ObservablePipeOperator<G, H>,
+    fn8: ObservablePipeOperator<H, V>
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D, F, G, H, I>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, F>,
+    fn6: ObservablePipeOperator<F, G>,
+    fn7: ObservablePipeOperator<G, H>,
+    fn8: ObservablePipeOperator<H, I>,
+    fn9: ObservablePipeOperator<I, V>,
+  ): PipeOperatorObservable<E, V, O>
+
+  <A, B, C, D, F, G, H, I>(
+    fn1: ObservablePipeOperator<E, A>,
+    fn2: ObservablePipeOperator<A, B>,
+    fn3: ObservablePipeOperator<B, C>,
+    fn4: ObservablePipeOperator<C, D>,
+    fn5: ObservablePipeOperator<D, F>,
+    fn6: ObservablePipeOperator<F, G>,
+    fn7: ObservablePipeOperator<G, H>,
+    fn8: ObservablePipeOperator<H, I>,
+    fn9: ObservablePipeOperator<I, V>,
+    ...fns: ObservablePipeOperator<any, any>[]
+  ): PipeOperatorObservable<E, V, O>
 }
 
 export type ObservableNext<T> = (value: T) => Promise<T>
