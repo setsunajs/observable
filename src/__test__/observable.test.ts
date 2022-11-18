@@ -190,4 +190,21 @@ describe("createObservable", () => {
     expect(retry).toBe(3)
     expect(fn).toHaveBeenCalledTimes(1)
   })
+
+  it("Implicit subscription", async () => {
+    const ob1 = createObservable(0)
+    const ob2 = createObservable(ob1)
+
+    const sub = vi.fn((v) => expect(v).toBe(1))
+    ob2.subscribe(sub)
+
+    await ob1.next(1)
+    expect(ob2.value).toBe(1)
+    expect(sub).toHaveBeenCalledTimes(1)
+
+    ob2.unSubscribe!()
+    await ob1.next(2)
+    expect(ob2.value).toBe(1)
+    expect(sub).toHaveBeenCalledTimes(1)
+  })
 })

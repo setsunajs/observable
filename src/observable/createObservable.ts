@@ -25,7 +25,7 @@ export function createObservable<E = any, V = E, O = V>(
   })
 
   if (shouldSubscribe) {
-    context.unSubscribe = value.subscribe({
+    context.observable.unSubscribe = value.subscribe({
       next: context.observable.next,
       error: context.observable.error,
       complete: context.observable.complete

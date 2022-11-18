@@ -1,6 +1,6 @@
 {
   "name": "@setsunajs/observable",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An implementation that conforms to the 'setsuna/observable' specification",
   "keywords": [
     "setsuna",

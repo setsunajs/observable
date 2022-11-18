@@ -80,7 +80,7 @@ export const complete: ObservableComplete = function (this: ObservableContext) {
   if (!validateClosed(ctx)) {
     return Promise.resolve(ctx.observable.value)
   }
-  if (ctx.unSubscribe) ctx.unSubscribe()
+  if (ctx.observable.unSubscribe) ctx.observable.unSubscribe()
   ctx.closed = true
   return callEffectEmit(ctx, "complete")
 }
